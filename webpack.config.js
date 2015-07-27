@@ -3,17 +3,11 @@ var webpack = require('webpack');
 module.exports = {
 
   context: path.resolve(__dirname, 'app'),
-  entry: {
-    main: path.resolve('app/index.js'),
-    widget: path.resolve('app/widget.ui.js'),
-    todo: path.resolve('app/todo.ui.js'),
-    messenger: path.resolve('app/messenger.ui.js'),
-  },
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/static/',
-    filename: '[name].entry.js',
-    chunkFilename: "[id].chunk.js"
+    filename: '[name].entry.js'
   },
 
 
@@ -28,8 +22,8 @@ module.exports = {
        // riot: 'riot/riot+compiler.js'
        riot: 'riot/riot.js',
        // control: path.resolve(__dirname, 'app/riot.control')
-     }),
-      new webpack.optimize.CommonsChunkPlugin('common.js')
+     })
+     // new webpack.CommonsChunkPlugin()
    ],
 
    resolve: {
@@ -37,7 +31,7 @@ module.exports = {
     // alias: {
     //   riotControl: path.resolve(__dirname, 'app/riot.control'),
     // },
-    root: [ path.resolve('./app')]
+    root: [ path.resolve('./app'), path.resolve('./app/feature-x')]
    },
 
   // Add loader for .ts files.
