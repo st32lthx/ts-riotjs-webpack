@@ -1,0 +1,2 @@
+webpackJsonp([4,0],[function(t,e){"use strict";var n=["on","one","off","trigger"],r={_stores:[],addStore:function(t){this._stores.push(t)}};n.forEach(function(t){r[t]=function(){var e=[].slice.call(arguments);this._stores.forEach(function(n){n[t].apply(null,e)})}}),t.exports=r}]);
+//# sourceMappingURL=messenger.entry.js.map

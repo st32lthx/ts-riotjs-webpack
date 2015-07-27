@@ -3,17 +3,19 @@ var webpack = require('webpack');
 module.exports = {
 
   context: path.resolve(__dirname, 'app'),
-  entry: './index.js',
+  entry: {
+    main: path.resolve('app/index.js'),
+    widget: path.resolve('app/widget.ui.js'),
+    todo: path.resolve('app/todo.ui.js'),
+    messenger: path.resolve('app/messenger.ui.js'),
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/static/',
-    filename: 'bundle.js'
+    filename: '[name].entry.js',
+    chunkFilename: "[id].chunk.js"
   },
 
-  // Currently we need to add '.ts' to resolve.extensions array.
-  resolve: {
-    extensions: ['', '.ts', '.webpack.js', '.web.js', '.js', '.tag', '.es', '.html', '.scss']
-  },
 
   // Source maps support (or 'inline-source-map' also works)
   devtool: 'source-map',
@@ -24,9 +26,19 @@ module.exports = {
   plugins: [
      new webpack.ProvidePlugin({
        // riot: 'riot/riot+compiler.js'
-       riot: 'riot/riot.js'
-     })
+       riot: 'riot/riot.js',
+       // control: path.resolve(__dirname, 'app/riot.control')
+     }),
+      new webpack.optimize.CommonsChunkPlugin('common.js')
    ],
+
+   resolve: {
+    extensions: ['', '.ts', '.webpack.js', '.web.js', '.js', '.tag', '.es', '.html', '.scss'],
+    // alias: {
+    //   riotControl: path.resolve(__dirname, 'app/riot.control'),
+    // },
+    root: [ path.resolve('./app')]
+   },
 
   // Add loader for .ts files.
   module: {

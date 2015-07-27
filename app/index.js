@@ -1,6 +1,10 @@
 'use strict';
+window.riot = riot;
 
-var riot = require('riot');
+var control = require('riot.control');
+var todoStore = require('todo/todo.store');
+
+control.addStore(todoStore);
 /*
   To compile manually:
     1. webpack config:
@@ -15,12 +19,9 @@ var riot = require('riot');
 */
 
 riot.tag ('todo-app',
-  require('./todoapp/todoapp.tpl'),
-  require('./todoapp/todoapp.style'),
-  require('./todoapp/todoapp.ctrl'));
+  require('todoapp/todoapp.tpl.html'),
+  require('todoapp/todoapp.style'),
+  require('todoapp/todoapp.ctrl'));
 
-riot.tag ('todo',
-  require('./todo/todo.tpl'),
-  require('./todo/todo.ctrl'));
 
 riot.mount('todo-app');
