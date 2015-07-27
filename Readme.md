@@ -1,4 +1,4 @@
-# Riot.js + Typescript + Webpack = Awesomeness #
+# Riot.js + ES6 + Webpack = Awesomeness #
 
 ## Requirements
 
