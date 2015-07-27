@@ -1,9 +1,26 @@
-/// <reference path="webpack.d.ts" />
-var Car_1 = require('./Car');
-var car = new Car_1["default"]();
-console.log(car.name);
-// var sorter = require('./sort').default;
-// import sorter = require('./sort');
+'use strict';
+
 var riot = require('riot');
-// import {riot} from './sort';
-console.log(riot);
+/*
+  To compile manually:
+    1. webpack config:
+    plugins: [
+       new webpack.ProvidePlugin({
+         riot: 'riot/riot+compiler.js'
+       })
+     ]
+    2. in your index.js set `window.riot = riot`
+    3. riot.compile(require('./todoapp/todoapp.tpl'));
+    4. riot.compile(require('./todoapp/todoapp.tag'));
+*/
+
+riot.tag ('todo-app',
+  require('./todoapp/todoapp.tpl'),
+  require('./todoapp/todoapp.style'),
+  require('./todoapp/todoapp.ctrl'));
+
+riot.tag ('todo',
+  require('./todo/todo.tpl'),
+  require('./todo/todo.ctrl'));
+
+riot.mount('todo-app');
